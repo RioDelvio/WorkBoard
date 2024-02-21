@@ -1,7 +1,8 @@
-package com.example.workboard
+package com.example.workboard.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.workboard.R
 
 class MainActivity : AppCompatActivity() {
 
