@@ -1,4 +1,9 @@
 package com.example.workboard.domain.usecases
 
-class DeleteNoteUseCase {
+import com.example.workboard.domain.WorkBoardRepository
+import javax.inject.Inject
+
+class DeleteNoteUseCase @Inject constructor(private val repository: WorkBoardRepository){
+
+    operator fun invoke(id: Int) = repository.deleteNote(id)
 }
