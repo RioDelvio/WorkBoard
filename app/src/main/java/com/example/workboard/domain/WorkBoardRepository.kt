@@ -16,5 +16,4 @@ interface WorkBoardRepository {
     fun getTaskList(): LiveData<List<Task>>
     fun editNote(note: Note)
     fun editTask(task: Task)
-
 }

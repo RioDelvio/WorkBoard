@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Work Board</string>
+    <string name="wall">Стена</string>
+    <string name="notes">Записки</string>
+    <string name="tasks">Задачи</string>
+    <string name="input_text">Введите текст</string>
+    <string name="dialog_title">Внимание</string>
+    <string name="dialog_message">Вы точно хотите удалить задачу?</string>
+    <string name="dialog_abort">Отмена</string>
+    <string name="dialog_delete">Удалить</string>
 </resources>
