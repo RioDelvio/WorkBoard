@@ -15,9 +15,9 @@ interface NoteListDao {
     @Query("SELECT * FROM note_list")
     fun getNoteList(): LiveData<List<NoteDbModel>>
     @Query("SELECT * FROM note_list WHERE id=:id LIMIT 1")
-    fun getNote(id: Int): NoteDbModel
+    suspend fun getNote(id: Int): NoteDbModel
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addNote(note: NoteDbModel)
+    suspend fun addNote(note: NoteDbModel)
     @Query("DELETE FROM note_list WHERE id=:taskId")
-    fun deleteNote(taskId: Int)
+    suspend fun deleteNote(taskId: Int)
 }

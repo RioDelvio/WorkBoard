@@ -16,28 +16,28 @@ class WorkBoardRepositoryImpl @Inject constructor(
     private val noteListDao: NoteListDao,
     private val mapper: Mapper
 ): WorkBoardRepository{
-    override fun addNote(note: Note) {
+    override suspend fun addNote(note: Note) {
         noteListDao.addNote(mapper.mapNoteEntityToDbModel(note))
     }
 
-    override fun addTask(task: Task) {
+    override suspend fun addTask(task: Task) {
         taskListDao.addTask(mapper.mapTaskEntityToDbModel(task))
     }
 
-    override fun deleteNote(id: Int) {
+    override suspend fun deleteNote(id: Int) {
         noteListDao.deleteNote(id)
     }
 
-    override fun deleteTask(id: Int) {
+    override suspend fun deleteTask(id: Int) {
         taskListDao.deleteTask(id)
     }
 
-    override fun getNote(id: Int): Note {
+    override suspend fun getNote(id: Int): Note {
         val dbModel = noteListDao.getNote(id)
         return mapper.mapNoteDbModelToEntity(dbModel)
     }
 
-    override fun getTask(id: Int): Task {
+    override suspend fun getTask(id: Int): Task {
         val dbModel = taskListDao.getTask(id)
         return mapper.mapTaskDbModelToEntity(dbModel)
     }
@@ -52,11 +52,11 @@ class WorkBoardRepositoryImpl @Inject constructor(
             mapper.mapTaskListDbModelToListEntity(it)
         }
 
-    override fun editNote(note: Note) {
+    override suspend fun editNote(note: Note) {
         noteListDao.addNote(mapper.mapNoteEntityToDbModel(note))
     }
 
-    override fun editTask(task: Task) {
+    override suspend fun editTask(task: Task) {
         taskListDao.addTask(mapper.mapTaskEntityToDbModel(task))
     }
 
