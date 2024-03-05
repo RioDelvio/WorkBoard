@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.workboard.R
 import com.example.workboard.databinding.FragmentTasksBinding
 import com.example.workboard.presentation.WorkBoardApp
@@ -41,10 +42,6 @@ class TasksFragment : Fragment() {
         component.inject(this)
     }
 
-    companion object {
-
-        fun newInstance() = TasksFragment()
-    }
 
 
     override fun onCreateView(
@@ -60,16 +57,33 @@ class TasksFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[TasksViewModel::class.java]
         val listAdapter = TasksListAdapter()
         binding.tasksRecyclerView.adapter = listAdapter
-        viewModel.getTaskList.observe(viewLifecycleOwner) {
-            listAdapter.submitList(it)
+        with(listAdapter) {
+            viewModel.getTaskList.observe(viewLifecycleOwner) {
+                submitList(it)
+            }
+            onChangeCompletedStatus = {
+                viewModel.changeCompleteState(it)
+            }
+            onLongTaskClickListener = {
+                createDialog(it.id)
+            }
+            onTaskClickListener= {
+               findNavController().navigate(
+                   TasksFragmentDirections.actionTasksFragmentToCreateTaskFragment(it.id)
+               )
+            }
         }
-        listAdapter.onChangeCompletedStatus = {
-            viewModel.changeCompleteState(it)
-        }
-        listAdapter.onLongTaskClickListener = {
-            createDialog(it.id)
+        binding.floatingActionButtonNewTask.setOnClickListener {
+            findNavController().navigate(
+                TasksFragmentDirections.actionTasksFragmentToCreateTaskFragment()
+            )
         }
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun createDialog(taskId: Int) {

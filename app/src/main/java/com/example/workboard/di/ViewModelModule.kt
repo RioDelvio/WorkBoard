@@ -1,6 +1,7 @@
 package com.example.workboard.di
 
 import androidx.lifecycle.ViewModel
+import com.example.workboard.presentation.viewmodels.CreateTaskViewModel
 import com.example.workboard.presentation.viewmodels.NotesViewModel
 import com.example.workboard.presentation.viewmodels.TasksViewModel
 import com.example.workboard.presentation.viewmodels.WallViewModel
@@ -25,4 +26,9 @@ interface ViewModelModule {
     @Binds
     @ViewModelKey(WallViewModel::class)
     fun bindWallViewModel(viewModel: WallViewModel): ViewModel
+
+    @IntoMap
+    @Binds
+    @ViewModelKey(CreateTaskViewModel::class)
+    fun bindCreateTaskViewModel(viewModel: CreateTaskViewModel): ViewModel
 }

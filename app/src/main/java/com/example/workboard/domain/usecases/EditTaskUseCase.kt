@@ -6,5 +6,5 @@ import javax.inject.Inject
 
 class EditTaskUseCase @Inject constructor(private val repository: WorkBoardRepository){
 
-    operator fun invoke(task: Task) = repository.editTask(task)
+    suspend operator fun invoke(task: Task) = repository.editTask(task)
 }

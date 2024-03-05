@@ -12,6 +12,7 @@ class TasksListAdapter : ListAdapter<Task, TasksViewHolder>(TasksDiffCallback) {
     var onChangeCompletedStatus: ((Task) -> Unit)? = null
 
     var onLongTaskClickListener: ((Task) -> Unit)? = null
+    var onTaskClickListener: ((Task) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TasksViewHolder {
         val binding = ItemTaskBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -29,9 +30,12 @@ class TasksListAdapter : ListAdapter<Task, TasksViewHolder>(TasksDiffCallback) {
             checkBoxTask.setOnCheckedChangeListener { buttonView, isChecked ->
                 onChangeCompletedStatus?.invoke(task)
             }
-            this.taskItem.setOnLongClickListener {
+            root.setOnLongClickListener {
                 onLongTaskClickListener?.invoke(task)
                 true
+            }
+            root.setOnClickListener{
+                onTaskClickListener?.invoke(task)
             }
 
         }

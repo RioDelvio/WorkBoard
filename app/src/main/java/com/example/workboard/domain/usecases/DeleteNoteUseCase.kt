@@ -5,5 +5,5 @@ import javax.inject.Inject
 
 class DeleteNoteUseCase @Inject constructor(private val repository: WorkBoardRepository){
 
-    operator fun invoke(id: Int) = repository.deleteNote(id)
+    suspend operator fun invoke(id: Int) = repository.deleteNote(id)
 }

@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.workboard.data.dbmodels.NoteDbModel
 import com.example.workboard.data.dbmodels.TaskDbModel
 
-@Database(entities = [TaskDbModel::class, NoteDbModel::class], version = 1, exportSchema = false)
+@Database(entities = [TaskDbModel::class, NoteDbModel::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase(){
 
     abstract fun taskListDao(): TaskListDao
@@ -30,7 +30,9 @@ abstract class AppDatabase : RoomDatabase(){
                     application,
                     AppDatabase::class.java,
                     DB_NAME
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = db
                 return db
             }

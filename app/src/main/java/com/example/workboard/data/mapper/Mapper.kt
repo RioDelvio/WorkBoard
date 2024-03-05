@@ -15,7 +15,7 @@ class Mapper @Inject constructor() {
         return Note(id = dbModel.id, title = dbModel.title)
     }
     fun mapTaskEntityToDbModel(entity: Task): TaskDbModel {
-        return TaskDbModel(id = entity.id, title = entity.title, isDone = entity.isDone)
+        return TaskDbModel(id = entity.id, title = entity.title ?: "", isDone = entity.isDone)
     }
     fun mapNoteEntityToDbModel(entity: Note): NoteDbModel {
         return NoteDbModel(id = entity.id, title = entity.title)

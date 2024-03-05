@@ -14,9 +14,9 @@ interface TaskListDao {
     @Query("SELECT * FROM task_list")
     fun getTaskList(): LiveData<List<TaskDbModel>>
     @Query("SELECT * FROM task_list WHERE id=:id LIMIT 1")
-    fun getTask(id: Int): TaskDbModel
+    suspend fun getTask(id: Int): TaskDbModel
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addTask(task: TaskDbModel)
+    suspend fun addTask(task: TaskDbModel)
     @Query("DELETE FROM task_list WHERE id=:taskId")
-    fun deleteTask(taskId: Int)
+    suspend fun deleteTask(taskId: Int)
 }

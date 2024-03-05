@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/wallFragment">
+    app:startDestination="@id/tasksFragment">
 
     <fragment
         android:id="@+id/wallFragment"
@@ -23,11 +23,17 @@
         <action
             android:id="@+id/action_tasksFragment_to_createTaskFragment"
             app:destination="@id/createTaskFragment"
-            app:enterAnim="@anim/nav_default_enter_anim" />
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:popUpTo="@id/tasksFragment" />
     </fragment>
     <fragment
         android:id="@+id/createTaskFragment"
-        android:name="com.example.workboard.CreateTaskFragment"
+        android:name="com.example.workboard.presentation.fragments.CreateTaskFragment"
         android:label="fragment_create_task"
-        tools:layout="@layout/fragment_create_task" />
+        tools:layout="@layout/fragment_create_task" >
+        <argument
+            android:name="taskId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>

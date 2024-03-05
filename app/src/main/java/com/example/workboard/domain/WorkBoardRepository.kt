@@ -6,14 +6,15 @@ import com.example.workboard.domain.entities.Task
 
 interface WorkBoardRepository {
 
-    fun addNote(note: Note)
-    fun addTask(task: Task)
-    fun deleteNote(id: Int)
-    fun deleteTask(id: Int)
-    fun getNote(id: Int): Note
-    fun getTask(id: Int): Task
+    suspend fun addNote(note: Note)
+    suspend fun addTask(task: Task)
+    suspend fun deleteNote(id: Int)
+    suspend fun deleteTask(id: Int)
+    suspend fun getNote(id: Int): Note
+    suspend fun getTask(id: Int): Task
     fun getNoteList(): LiveData<List<Note>>
     fun getTaskList(): LiveData<List<Task>>
-    fun editNote(note: Note)
-    fun editTask(task: Task)
+    suspend fun editNote(note: Note)
+    suspend fun editTask(task: Task)
+
 }
